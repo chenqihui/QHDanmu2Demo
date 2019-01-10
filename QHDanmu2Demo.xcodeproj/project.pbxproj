@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		741C6EB121DF36A900ED6E17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6EB021DF36A900ED6E17 /* AppDelegate.m */; };
+		741C6EB521DF36A900ED6E17 /* QHTableRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6EB421DF36A900ED6E17 /* QHTableRootViewController.m */; };
+		741C6EB821DF36A900ED6E17 /* QHDetailRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6EB721DF36A900ED6E17 /* QHDetailRootViewController.m */; };
+		741C6EBC21DF36A900ED6E17 /* QHTableSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6EBB21DF36A900ED6E17 /* QHTableSubViewController.m */; };
+		741C6EBE21DF36A900ED6E17 /* QHTableSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741C6EBD21DF36A900ED6E17 /* QHTableSubViewController.xib */; };
+		741C6EC121DF36A900ED6E17 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6EC021DF36A900ED6E17 /* ViewController.m */; };
+		741C6EC421DF36A900ED6E17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741C6EC221DF36A900ED6E17 /* Main.storyboard */; };
+		741C6EC621DF36AB00ED6E17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741C6EC521DF36AB00ED6E17 /* Assets.xcassets */; };
+		741C6EC921DF36AB00ED6E17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741C6EC721DF36AB00ED6E17 /* LaunchScreen.storyboard */; };
+		741C6ECC21DF36AB00ED6E17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6ECB21DF36AB00ED6E17 /* main.m */; };
+		743DE99521DF54F800726C75 /* QHViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99321DF54F800726C75 /* QHViewUtil.m */; };
+		743DE99621DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99421DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m */; };
+		743DE99921DF630400726C75 /* QHDanmuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99821DF630400726C75 /* QHDanmuView.m */; };
+		743DE99C21DF717800726C75 /* QHDanmuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99B21DF717800726C75 /* QHDanmuViewCell.m */; };
+		743DE99F21E2F72D00726C75 /* QHBaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99E21E2F72D00726C75 /* QHBaseUtil.m */; };
+		74B1904F21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1904E21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m */; };
+		74B1905221E49467009C5F03 /* SLCDanmuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1905121E49467009C5F03 /* SLCDanmuViewCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		741C6EAC21DF36A900ED6E17 /* QHDanmu2Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QHDanmu2Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		741C6EAF21DF36A900ED6E17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		741C6EB021DF36A900ED6E17 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		741C6EB321DF36A900ED6E17 /* QHTableRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QHTableRootViewController.h; path = QHTableController/QHTableRootViewController.h; sourceTree = "<group>"; };
+		741C6EB421DF36A900ED6E17 /* QHTableRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QHTableRootViewController.m; path = QHTableController/QHTableRootViewController.m; sourceTree = "<group>"; };
+		741C6EB621DF36A900ED6E17 /* QHDetailRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QHDetailRootViewController.h; path = QHTableController/QHDetailRootViewController.h; sourceTree = "<group>"; };
+		741C6EB721DF36A900ED6E17 /* QHDetailRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QHDetailRootViewController.m; path = QHTableController/QHDetailRootViewController.m; sourceTree = "<group>"; };
+		741C6EBA21DF36A900ED6E17 /* QHTableSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QHTableSubViewController.h; path = QHTableSubController/QHTableSubViewController.h; sourceTree = "<group>"; };
+		741C6EBB21DF36A900ED6E17 /* QHTableSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QHTableSubViewController.m; path = QHTableSubController/QHTableSubViewController.m; sourceTree = "<group>"; };
+		741C6EBD21DF36A900ED6E17 /* QHTableSubViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QHTableSubViewController.xib; path = QHTableSubController/QHTableSubViewController.xib; sourceTree = "<group>"; };
+		741C6EBF21DF36A900ED6E17 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		741C6EC021DF36A900ED6E17 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		741C6EC321DF36A900ED6E17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		741C6EC521DF36AB00ED6E17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		741C6EC821DF36AB00ED6E17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		741C6ECA21DF36AB00ED6E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		741C6ECB21DF36AB00ED6E17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		743DE99121DF54F800726C75 /* QHViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHViewUtil.h; sourceTree = "<group>"; };
+		743DE99221DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+QHEOCBlocksSupport.h"; sourceTree = "<group>"; };
+		743DE99321DF54F800726C75 /* QHViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHViewUtil.m; sourceTree = "<group>"; };
+		743DE99421DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+QHEOCBlocksSupport.m"; sourceTree = "<group>"; };
+		743DE99721DF630400726C75 /* QHDanmuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHDanmuView.h; sourceTree = "<group>"; };
+		743DE99821DF630400726C75 /* QHDanmuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHDanmuView.m; sourceTree = "<group>"; };
+		743DE99A21DF717800726C75 /* QHDanmuViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHDanmuViewCell.h; sourceTree = "<group>"; };
+		743DE99B21DF717800726C75 /* QHDanmuViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHDanmuViewCell.m; sourceTree = "<group>"; };
+		743DE99D21E2F72D00726C75 /* QHBaseUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHBaseUtil.h; sourceTree = "<group>"; };
+		743DE99E21E2F72D00726C75 /* QHBaseUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHBaseUtil.m; sourceTree = "<group>"; };
+		74B1904D21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QHTableSubViewController+SLCDanmu.h"; sourceTree = "<group>"; };
+		74B1904E21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QHTableSubViewController+SLCDanmu.m"; sourceTree = "<group>"; };
+		74B1905021E49467009C5F03 /* SLCDanmuViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCDanmuViewCell.h; sourceTree = "<group>"; };
+		74B1905121E49467009C5F03 /* SLCDanmuViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCDanmuViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		741C6EA921DF36A900ED6E17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		741C6EA321DF36A900ED6E17 = {
+			isa = PBXGroup;
+			children = (
+				741C6EAE21DF36A900ED6E17 /* QHDanmu2Demo */,
+				741C6EAD21DF36A900ED6E17 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		741C6EAD21DF36A900ED6E17 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741C6EAC21DF36A900ED6E17 /* QHDanmu2Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		741C6EAE21DF36A900ED6E17 /* QHDanmu2Demo */ = {
+			isa = PBXGroup;
+			children = (
+				743DE99021DF54F800726C75 /* QHUtilMan */,
+				741C6ED221DF37E900ED6E17 /* QHDanmuMan */,
+				741C6EAF21DF36A900ED6E17 /* AppDelegate.h */,
+				741C6EB021DF36A900ED6E17 /* AppDelegate.m */,
+				741C6EBF21DF36A900ED6E17 /* ViewController.h */,
+				741C6EC021DF36A900ED6E17 /* ViewController.m */,
+				741C6EC221DF36A900ED6E17 /* Main.storyboard */,
+				741C6EC521DF36AB00ED6E17 /* Assets.xcassets */,
+				741C6EC721DF36AB00ED6E17 /* LaunchScreen.storyboard */,
+				741C6ECA21DF36AB00ED6E17 /* Info.plist */,
+				741C6ECB21DF36AB00ED6E17 /* main.m */,
+				741C6EB221DF36A900ED6E17 /* QHTableController */,
+				741C6EB921DF36A900ED6E17 /* QHTableSubController */,
+			);
+			path = QHDanmu2Demo;
+			sourceTree = "<group>";
+		};
+		741C6EB221DF36A900ED6E17 /* QHTableController */ = {
+			isa = PBXGroup;
+			children = (
+				741C6EB321DF36A900ED6E17 /* QHTableRootViewController.h */,
+				741C6EB421DF36A900ED6E17 /* QHTableRootViewController.m */,
+				741C6EB621DF36A900ED6E17 /* QHDetailRootViewController.h */,
+				741C6EB721DF36A900ED6E17 /* QHDetailRootViewController.m */,
+			);
+			name = QHTableController;
+			sourceTree = "<group>";
+		};
+		741C6EB921DF36A900ED6E17 /* QHTableSubController */ = {
+			isa = PBXGroup;
+			children = (
+				74B1904C21E492B0009C5F03 /* SLC */,
+				741C6EBA21DF36A900ED6E17 /* QHTableSubViewController.h */,
+				741C6EBB21DF36A900ED6E17 /* QHTableSubViewController.m */,
+				741C6EBD21DF36A900ED6E17 /* QHTableSubViewController.xib */,
+			);
+			name = QHTableSubController;
+			sourceTree = "<group>";
+		};
+		741C6ED221DF37E900ED6E17 /* QHDanmuMan */ = {
+			isa = PBXGroup;
+			children = (
+				743DE98921DF52D400726C75 /* Core */,
+			);
+			path = QHDanmuMan;
+			sourceTree = "<group>";
+		};
+		743DE98921DF52D400726C75 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				743DE99721DF630400726C75 /* QHDanmuView.h */,
+				743DE99821DF630400726C75 /* QHDanmuView.m */,
+				743DE99A21DF717800726C75 /* QHDanmuViewCell.h */,
+				743DE99B21DF717800726C75 /* QHDanmuViewCell.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		743DE99021DF54F800726C75 /* QHUtilMan */ = {
+			isa = PBXGroup;
+			children = (
+				743DE99121DF54F800726C75 /* QHViewUtil.h */,
+				743DE99321DF54F800726C75 /* QHViewUtil.m */,
+				743DE99221DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.h */,
+				743DE99421DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m */,
+				743DE99D21E2F72D00726C75 /* QHBaseUtil.h */,
+				743DE99E21E2F72D00726C75 /* QHBaseUtil.m */,
+			);
+			path = QHUtilMan;
+			sourceTree = "<group>";
+		};
+		74B1904C21E492B0009C5F03 /* SLC */ = {
+			isa = PBXGroup;
+			children = (
+				74B1904D21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.h */,
+				74B1904E21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m */,
+				74B1905021E49467009C5F03 /* SLCDanmuViewCell.h */,
+				74B1905121E49467009C5F03 /* SLCDanmuViewCell.m */,
+			);
+			path = SLC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		741C6EAB21DF36A900ED6E17 /* QHDanmu2Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 741C6ECF21DF36AB00ED6E17 /* Build configuration list for PBXNativeTarget "QHDanmu2Demo" */;
+			buildPhases = (
+				741C6EA821DF36A900ED6E17 /* Sources */,
+				741C6EA921DF36A900ED6E17 /* Frameworks */,
+				741C6EAA21DF36A900ED6E17 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QHDanmu2Demo;
+			productName = QHDanmu2Demo;
+			productReference = 741C6EAC21DF36A900ED6E17 /* QHDanmu2Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		741C6EA421DF36A900ED6E17 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Chen Network Technology";
+				TargetAttributes = {
+					741C6EAB21DF36A900ED6E17 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 741C6EA721DF36A900ED6E17 /* Build configuration list for PBXProject "QHDanmu2Demo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 741C6EA321DF36A900ED6E17;
+			productRefGroup = 741C6EAD21DF36A900ED6E17 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				741C6EAB21DF36A900ED6E17 /* QHDanmu2Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		741C6EAA21DF36A900ED6E17 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C6EBE21DF36A900ED6E17 /* QHTableSubViewController.xib in Resources */,
+				741C6EC921DF36AB00ED6E17 /* LaunchScreen.storyboard in Resources */,
+				741C6EC621DF36AB00ED6E17 /* Assets.xcassets in Resources */,
+				741C6EC421DF36A900ED6E17 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		741C6EA821DF36A900ED6E17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C6EB821DF36A900ED6E17 /* QHDetailRootViewController.m in Sources */,
+				74B1905221E49467009C5F03 /* SLCDanmuViewCell.m in Sources */,
+				743DE99521DF54F800726C75 /* QHViewUtil.m in Sources */,
+				743DE99921DF630400726C75 /* QHDanmuView.m in Sources */,
+				741C6EB521DF36A900ED6E17 /* QHTableRootViewController.m in Sources */,
+				743DE99C21DF717800726C75 /* QHDanmuViewCell.m in Sources */,
+				743DE99F21E2F72D00726C75 /* QHBaseUtil.m in Sources */,
+				74B1904F21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m in Sources */,
+				743DE99621DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m in Sources */,
+				741C6EB121DF36A900ED6E17 /* AppDelegate.m in Sources */,
+				741C6EBC21DF36A900ED6E17 /* QHTableSubViewController.m in Sources */,
+				741C6ECC21DF36AB00ED6E17 /* main.m in Sources */,
+				741C6EC121DF36A900ED6E17 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		741C6EC221DF36A900ED6E17 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741C6EC321DF36A900ED6E17 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		741C6EC721DF36AB00ED6E17 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741C6EC821DF36AB00ED6E17 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		741C6ECD21DF36AB00ED6E17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		741C6ECE21DF36AB00ED6E17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		741C6ED021DF36AB00ED6E17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JC9Y4K55DX;
+				INFOPLIST_FILE = QHDanmu2Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chen.QHDanmu2Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		741C6ED121DF36AB00ED6E17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JC9Y4K55DX;
+				INFOPLIST_FILE = QHDanmu2Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chen.QHDanmu2Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		741C6EA721DF36A900ED6E17 /* Build configuration list for PBXProject "QHDanmu2Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				741C6ECD21DF36AB00ED6E17 /* Debug */,
+				741C6ECE21DF36AB00ED6E17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		741C6ECF21DF36AB00ED6E17 /* Build configuration list for PBXNativeTarget "QHDanmu2Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				741C6ED021DF36AB00ED6E17 /* Debug */,
+				741C6ED121DF36AB00ED6E17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 741C6EA421DF36A900ED6E17 /* Project object */;
+}
