@@ -20,7 +20,7 @@
 
 - (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView;
 
-- (QHDanmuViewCell * _Nullable)danmuView:(QHDanmuView * _Nonnull)danmuView cellForPathwayWithData:(NSDictionary *)data;
+- (QHDanmuViewCell * _Nullable)danmuView:(QHDanmuView * _Nonnull)danmuView cellForPathwayWithData:(NSDictionary * _Nonnull)data;
 
 @optional
 

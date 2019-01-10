@@ -220,6 +220,12 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 }
 
 - (BOOL)p_danmuAction {
+    
+    UIApplicationState state = [UIApplication sharedApplication].applicationState;
+    if (state == UIApplicationStateBackground) {
+        return NO;
+    }
+    
     if (_danmuDataList.count <= 0) {
         [self p_closeTimer];
         return NO;
@@ -259,7 +265,6 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     QHDanmuCellParam newParam;
     newParam.pathwayNumber = -1;
     
-//    NSInteger usePathwayNum = -1;
     for (int i = 0; i < _pathwayCount; i++) {
         // 记录时间
         newParam.startTime = CFAbsoluteTimeGetCurrent();
