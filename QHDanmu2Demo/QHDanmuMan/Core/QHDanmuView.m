@@ -208,26 +208,26 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         __weak typeof(self) weakSelf = self;
         _danmuTimer = [NSTimer qheoc_scheduledTimerWithTimeInterval:0.2 block:^{
             dispatch_sync(weakSelf.danmuQueue, ^{
-                [weakSelf p_danmuAction];
+                for (int i = 0; i < weakSelf.pathwayCount; i++) {
+                    BOOL bAction = [weakSelf p_danmuAction];
+                    if (bAction == NO) {
+                        break;
+                    }
+                }
             });
         } repeats:YES];
     }
 }
 
-- (void)p_danmuAction {
+- (BOOL)p_danmuAction {
     if (_danmuDataList.count <= 0) {
         [self p_closeTimer];
-        return;
+        return NO;
     }
     
     NSDictionary *data = _danmuDataList.firstObject;
     if (data == nil) {
-        return;
-    }
-    QHDanmuViewCell *cell = [_dataSource danmuView:self cellForPathwayWithData:data];
-    if (cell == nil) {
-        [_danmuDataList removeObjectAtIndex:0];
-        return;
+        return NO;
     }
     
     CGFloat playUseTime = kQHDanmuPlayUseTime;
@@ -238,30 +238,39 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     QHDanmuCellParam newParam = [self p_danmuParamWithPlayUseTime:playUseTime];
     
     if (newParam.pathwayNumber == -1) {
-        return;
+        return NO;
     }
     
+    QHDanmuViewCell *cell = [_dataSource danmuView:self cellForPathwayWithData:data];
+    if (cell == nil) {
+        [_danmuDataList removeObjectAtIndex:0];
+        return NO;
+    }
     [self p_danmuAnimationOfFlyWithCell:cell param:newParam playUseTime:playUseTime];
     
     // 使用完清除弹幕池数据
     [_danmuDataList removeObjectAtIndex:0];
+    return YES;
 }
 
 // 如果是深度优先， 这里的 _inCount 应该计算是否碰撞，而如果是广度优先，则先递增航道，重新回到最开始的航道，再计算碰撞。如果航道没有任何弹幕，则无需判断
 - (QHDanmuCellParam)p_danmuParamWithPlayUseTime:(CGFloat)playUseTime {
     NSDictionary *data = _danmuDataList.firstObject;
     QHDanmuCellParam newParam;
-    newParam.width = [_delegate danmuView:self widthForPathwayWithData:[data copy]];
-    newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
-    newParam.startTime = CFAbsoluteTimeGetCurrent();
     newParam.pathwayNumber = -1;
     
-    NSInteger usePathwayNum = -1;
+//    NSInteger usePathwayNum = -1;
     for (int i = 0; i < _pathwayCount; i++) {
+        // 记录时间
+        newParam.startTime = CFAbsoluteTimeGetCurrent();
+        
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         id obj = [_cachedCellsParam objectForKey:indexPath];
         if ([obj isKindOfClass:[NSNull class]] == YES) {
-            usePathwayNum = i;
+            // 记录宽度 & 计算速度
+            newParam.width = [_delegate danmuView:self widthForPathwayWithData:data];
+            newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+            newParam.pathwayNumber = i;
         }
         else if ([obj isKindOfClass:[NSValue class]] == YES) {
             QHDanmuCellParam lastParam;
@@ -269,16 +278,21 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
             
             CFTimeInterval spaceTime = newParam.startTime - lastParam.startTime;
             if (spaceTime * lastParam.speed >= lastParam.width) {
+                
+                // 记录宽度 & 计算速度
+                newParam.width = [_delegate danmuView:self widthForPathwayWithData:data];
+                newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+                
                 // 最后一个弹幕已完全显示在轨道
                 // 如果最后弹幕的速度大于新的弹幕速度，则该轨道可与使用
                 if (lastParam.speed >= newParam.speed) {
-                    usePathwayNum = lastParam.pathwayNumber;
+                    newParam.pathwayNumber = lastParam.pathwayNumber;
                 }
                 else {
                     // 最后一个弹幕剩余的滑动时间，新弹幕是否能在显示区域追上，判断新弹幕需要的时间与之比较。小于等于，则追不上，该轨道可使用；反之不可使用。
                     CGFloat useTimeInScreen = self.frame.size.width / newParam.speed;
                     if (useTimeInScreen >= (playUseTime - spaceTime)) {
-                        usePathwayNum = lastParam.pathwayNumber;
+                        newParam.pathwayNumber = lastParam.pathwayNumber;
                     }
                 }
             }
@@ -287,8 +301,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
             }
         }
         
-        if (usePathwayNum >= 0) {
-            newParam.pathwayNumber = usePathwayNum;
+        if (newParam.pathwayNumber >= 0) {
             break;
         }
     }
