@@ -119,7 +119,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     [self p_goDanmuTimer];
 }
 
-- (void)insertDataImmediately:(NSDictionary *)data {
+- (void)insertDataInFirst:(NSDictionary *)data {
     if (data == nil) {
         return;
     }
@@ -258,6 +258,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     _pathwayCount = 0;
     _pathwayHeight = 0;
     _danmuPoolMaxCount = kQHDanmuPoolMaxCount;
+    _searchPathwayMode = QHDanmuViewSearchPathwayModeDepthFirst;
     
     _dataSourceHas.playUseTimeOfPathwayCell = 0;
     
@@ -346,6 +347,28 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     NSDictionary *data = _danmuDataList.firstObject;
     QHDanmuCellParam newParam;
     newParam.pathwayNumber = -1;
+    
+    // 广度优先：先搜索是否有空闲的轨道，有则使用，无则再走深度优先
+    if (_searchPathwayMode == QHDanmuViewSearchPathwayModeBreadthFirst) {
+        for (int i = 0; i < _pathwayCount; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            id obj = [_cachedCellsParam objectForKey:indexPath];
+            if ([obj isKindOfClass:[NSNull class]] == YES) {
+                // 记录时间
+                newParam.startTime = CFAbsoluteTimeGetCurrent();
+                // 记录宽度 & 计算速度
+                newParam.width = [_delegate danmuView:self widthForPathwayWithData:data];
+                newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+                newParam.pathwayNumber = i;
+                
+                break;
+            }
+        }
+        
+        if (newParam.pathwayNumber >= 0) {
+            return newParam;
+        }
+    }
     
     for (int i = 0; i < _pathwayCount; i++) {
         // 记录时间

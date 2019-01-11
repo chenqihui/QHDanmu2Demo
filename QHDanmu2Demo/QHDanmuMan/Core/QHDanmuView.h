@@ -54,6 +54,12 @@ typedef NS_ENUM(NSInteger, QHDanmuViewStatus) {
     QHDanmuViewStatusPause,
 };
 
+typedef NS_ENUM(NSInteger, QHDanmuViewSearchPathwayMode) {
+    QHDanmuViewSearchPathwayModeDepthFirst, // 深度优先
+    QHDanmuViewSearchPathwayModeBreadthFirst, // 广度优先
+    // 随机选择轨道 [TODO]
+};
+
 @interface QHDanmuView : UIView
 
 @property (nonatomic, readonly) QHDanmuViewStyle style;
@@ -63,6 +69,8 @@ typedef NS_ENUM(NSInteger, QHDanmuViewStatus) {
 @property (nonatomic, weak, nullable) id <QHDanmuViewDelegate> delegate;
 // 弹幕池容量，默认 10 条
 @property (nonatomic) NSUInteger danmuPoolMaxCount;
+// 轨道搜索模式，默认 DepthFirst
+@property (nonatomic) QHDanmuViewSearchPathwayMode searchPathwayMode;
 
 - (id)initWithFrame:(CGRect)frame style:(QHDanmuViewStyle)theStyle;
 
@@ -71,7 +79,10 @@ typedef NS_ENUM(NSInteger, QHDanmuViewStatus) {
 - (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
 - (void)insertData:(NSArray<NSDictionary *> *)data;
-- (void)insertDataImmediately:(NSDictionary *)data;
+/**
+ 弹幕加入到弹幕池最前面
+ */
+- (void)insertDataInFirst:(NSDictionary *)data;
 - (void)cleanData;
 
 - (void)start;

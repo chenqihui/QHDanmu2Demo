@@ -32,6 +32,8 @@
     QHDanmuView *danmuView = [[QHDanmuView alloc] initWithFrame:CGRectZero style:QHDanmuViewStyleCustom];
     danmuView.dataSource = self;
     danmuView.delegate = self;
+    danmuView.danmuPoolMaxCount = 10;
+    danmuView.searchPathwayMode = QHDanmuViewSearchPathwayModeBreadthFirst;
     [c addSubview:danmuView];
     [QHViewUtil fullScreen:danmuView];
     [danmuView registerClass:[QHDanmuViewCell class] forCellReuseIdentifier:@"1"];

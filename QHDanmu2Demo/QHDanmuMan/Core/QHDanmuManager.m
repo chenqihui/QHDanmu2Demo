@@ -28,6 +28,7 @@
 #endif
     [self p_closeTimer];
     _danmuDataList = nil;
+    _startTimeBlock = nil;
 }
 
 #pragma mark - Public
@@ -65,7 +66,7 @@
 }
 
 - (void)insertDanmu:(NSDictionary *)data {
-    [_danmuView insertDataImmediately:data];
+    [_danmuView insertDataInFirst:data];
 }
 
 - (void)setMediaPlayAbsoluteTime:(CFAbsoluteTime)mediaPlayAbsoluteTime {
