@@ -342,7 +342,6 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     return YES;
 }
 
-// 如果是深度优先， 这里的 _inCount 应该计算是否碰撞，而如果是广度优先，则先递增航道，重新回到最开始的航道，再计算碰撞。如果航道没有任何弹幕，则无需判断
 - (QHDanmuCellParam)p_danmuParamWithPlayUseTime:(CGFloat)playUseTime {
     NSDictionary *data = _danmuDataList.firstObject;
     QHDanmuCellParam newParam;
