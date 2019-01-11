@@ -17,6 +17,7 @@
 		741C6EC621DF36AB00ED6E17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741C6EC521DF36AB00ED6E17 /* Assets.xcassets */; };
 		741C6EC921DF36AB00ED6E17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741C6EC721DF36AB00ED6E17 /* LaunchScreen.storyboard */; };
 		741C6ECC21DF36AB00ED6E17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C6ECB21DF36AB00ED6E17 /* main.m */; };
+		7432B52C21E834FA00862465 /* QHDanmuSourceNext.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7432B52B21E834FA00862465 /* QHDanmuSourceNext.plist */; };
 		743DE99521DF54F800726C75 /* QHViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99321DF54F800726C75 /* QHViewUtil.m */; };
 		743DE99621DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99421DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m */; };
 		743DE99921DF630400726C75 /* QHDanmuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99821DF630400726C75 /* QHDanmuView.m */; };
@@ -24,6 +25,10 @@
 		743DE99F21E2F72D00726C75 /* QHBaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 743DE99E21E2F72D00726C75 /* QHBaseUtil.m */; };
 		74B1904F21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1904E21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m */; };
 		74B1905221E49467009C5F03 /* SLCDanmuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1905121E49467009C5F03 /* SLCDanmuViewCell.m */; };
+		74B190AB21E745C5009C5F03 /* QHDanmuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B190AA21E745C5009C5F03 /* QHDanmuManager.m */; };
+		74B190B021E75365009C5F03 /* QHDanmuManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B190AE21E75365009C5F03 /* QHDanmuManagerViewController.m */; };
+		74B190B121E75365009C5F03 /* QHDanmuManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */; };
+		74B190B321E756E1009C5F03 /* QHDanmuSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74B190B221E756E1009C5F03 /* QHDanmuSource.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,7 @@
 		741C6EC821DF36AB00ED6E17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741C6ECA21DF36AB00ED6E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		741C6ECB21DF36AB00ED6E17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7432B52B21E834FA00862465 /* QHDanmuSourceNext.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHDanmuSourceNext.plist; sourceTree = "<group>"; };
 		743DE99121DF54F800726C75 /* QHViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHViewUtil.h; sourceTree = "<group>"; };
 		743DE99221DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+QHEOCBlocksSupport.h"; sourceTree = "<group>"; };
 		743DE99321DF54F800726C75 /* QHViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHViewUtil.m; sourceTree = "<group>"; };
@@ -58,6 +64,12 @@
 		74B1904E21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QHTableSubViewController+SLCDanmu.m"; sourceTree = "<group>"; };
 		74B1905021E49467009C5F03 /* SLCDanmuViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCDanmuViewCell.h; sourceTree = "<group>"; };
 		74B1905121E49467009C5F03 /* SLCDanmuViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCDanmuViewCell.m; sourceTree = "<group>"; };
+		74B190A921E745C5009C5F03 /* QHDanmuManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHDanmuManager.h; sourceTree = "<group>"; };
+		74B190AA21E745C5009C5F03 /* QHDanmuManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHDanmuManager.m; sourceTree = "<group>"; };
+		74B190AD21E75365009C5F03 /* QHDanmuManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHDanmuManagerViewController.h; sourceTree = "<group>"; };
+		74B190AE21E75365009C5F03 /* QHDanmuManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHDanmuManagerViewController.m; sourceTree = "<group>"; };
+		74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QHDanmuManagerViewController.xib; sourceTree = "<group>"; };
+		74B190B221E756E1009C5F03 /* QHDanmuSource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHDanmuSource.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +115,7 @@
 				741C6ECB21DF36AB00ED6E17 /* main.m */,
 				741C6EB221DF36A900ED6E17 /* QHTableController */,
 				741C6EB921DF36A900ED6E17 /* QHTableSubController */,
+				74B190AC21E752FE009C5F03 /* QHDanmuManagerController */,
 			);
 			path = QHDanmu2Demo;
 			sourceTree = "<group>";
@@ -144,6 +157,8 @@
 				743DE99821DF630400726C75 /* QHDanmuView.m */,
 				743DE99A21DF717800726C75 /* QHDanmuViewCell.h */,
 				743DE99B21DF717800726C75 /* QHDanmuViewCell.m */,
+				74B190A921E745C5009C5F03 /* QHDanmuManager.h */,
+				74B190AA21E745C5009C5F03 /* QHDanmuManager.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -170,6 +185,18 @@
 				74B1905121E49467009C5F03 /* SLCDanmuViewCell.m */,
 			);
 			path = SLC;
+			sourceTree = "<group>";
+		};
+		74B190AC21E752FE009C5F03 /* QHDanmuManagerController */ = {
+			isa = PBXGroup;
+			children = (
+				74B190B221E756E1009C5F03 /* QHDanmuSource.plist */,
+				7432B52B21E834FA00862465 /* QHDanmuSourceNext.plist */,
+				74B190AD21E75365009C5F03 /* QHDanmuManagerViewController.h */,
+				74B190AE21E75365009C5F03 /* QHDanmuManagerViewController.m */,
+				74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */,
+			);
+			path = QHDanmuManagerController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,10 +256,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74B190B321E756E1009C5F03 /* QHDanmuSource.plist in Resources */,
 				741C6EBE21DF36A900ED6E17 /* QHTableSubViewController.xib in Resources */,
 				741C6EC921DF36AB00ED6E17 /* LaunchScreen.storyboard in Resources */,
 				741C6EC621DF36AB00ED6E17 /* Assets.xcassets in Resources */,
 				741C6EC421DF36A900ED6E17 /* Main.storyboard in Resources */,
+				74B190B121E75365009C5F03 /* QHDanmuManagerViewController.xib in Resources */,
+				7432B52C21E834FA00862465 /* QHDanmuSourceNext.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,12 +279,14 @@
 				743DE99921DF630400726C75 /* QHDanmuView.m in Sources */,
 				741C6EB521DF36A900ED6E17 /* QHTableRootViewController.m in Sources */,
 				743DE99C21DF717800726C75 /* QHDanmuViewCell.m in Sources */,
+				74B190AB21E745C5009C5F03 /* QHDanmuManager.m in Sources */,
 				743DE99F21E2F72D00726C75 /* QHBaseUtil.m in Sources */,
 				74B1904F21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m in Sources */,
 				743DE99621DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m in Sources */,
 				741C6EB121DF36A900ED6E17 /* AppDelegate.m in Sources */,
 				741C6EBC21DF36A900ED6E17 /* QHTableSubViewController.m in Sources */,
 				741C6ECC21DF36AB00ED6E17 /* main.m in Sources */,
+				74B190B021E75365009C5F03 /* QHDanmuManagerViewController.m in Sources */,
 				741C6EC121DF36A900ED6E17 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

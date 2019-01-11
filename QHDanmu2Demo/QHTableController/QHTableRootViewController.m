@@ -10,6 +10,7 @@
 
 #import "QHDetailRootViewController.h"
 #import "QHTableSubViewController.h"
+#import "QHDanmuManagerViewController.h"
 
 @interface QHTableRootViewController ()
 
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *array = @[@"QHDanmuBase", @"QHDanmuLC"];
+    NSArray *array = @[@"QHDanmuBase", @"QHDanmuLC", @"QHDanmuManager"];
     self.arData = [NSMutableArray arrayWithArray:array];
 }
 
@@ -68,6 +69,9 @@
     UIViewController *subVC = nil;
     if ([title isEqualToString:@"QHDanmuLC"]) {
         subVC = [[QHTableSubViewController alloc] init];
+    }
+    else if ([title isEqualToString:@"QHDanmuManager"]) {
+        subVC = [[QHDanmuManagerViewController alloc] init];
     }
     else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

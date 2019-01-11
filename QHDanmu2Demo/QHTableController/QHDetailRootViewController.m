@@ -39,9 +39,9 @@
     
     
     UIButton *b1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [b1 setTitle:@"start" forState:UIControlStateNormal];
+    [b1 setTitle:@"pause" forState:UIControlStateNormal];
     [b1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [b1 setFrame:CGRectMake(10, 100, 40, 30)];
+    [b1 setFrame:CGRectMake(10, 100, 60, 30)];
     [b1 addTarget:self action:@selector(b1Action) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:b1];
     
@@ -51,6 +51,13 @@
     [b2 setFrame:CGRectMake(CGRectGetMaxX(b1.frame) + 20, 100, 40, 30)];
     [b2 addTarget:self action:@selector(b2Action) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:b2];
+    
+    UIButton *b3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [b3 setTitle:@"resume" forState:UIControlStateNormal];
+    [b3 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [b3 setFrame:CGRectMake(CGRectGetMaxX(b2.frame) + 20, 100, 60, 30)];
+    [b3 addTarget:self action:@selector(b3Action) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:b3];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,7 +105,8 @@
 #pragma mark - Action
 
 - (void)b1Action {
-    [_danmuView cleanData];
+//    [_danmuView cleanData];
+    [_danmuView pause];
 }
 
 static int pwId = 0;
@@ -107,6 +115,10 @@ static int pwId = 0;
     pwId++;
     [_danmuView insertData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", pwId]}]];
 //    [_danmuView insertDanmuData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"讲得挺好，一听就明白。"]}]];
+}
+
+- (void)b3Action {
+    [_danmuView resume];
 }
 
 @end
