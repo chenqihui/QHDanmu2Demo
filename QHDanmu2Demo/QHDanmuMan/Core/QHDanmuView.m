@@ -394,11 +394,6 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     }
     
     // [CGGeometry - NSHipster](https://nshipster.cn/cggeometry/#%E5%B8%B8%E9%87%8F)
-    if (newParam.pathwayNumber == -1) {
-        // 有弹幕池，不符合的进入等待，不删除
-        // [_danmuDataList removeObjectAtIndex:0];
-        return newParam;
-    }
     
     return newParam;
 }
