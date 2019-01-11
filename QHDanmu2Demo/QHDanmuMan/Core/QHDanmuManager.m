@@ -13,7 +13,6 @@
 
 @interface QHDanmuManager ()
 
-@property (nonatomic, strong) NSTimer *managerTimer;
 @property (nonatomic, strong) NSMutableArray<NSDictionary *> *danmuDataList;
 
 @property (nonatomic, weak) QHDanmuView *danmuView;
@@ -26,7 +25,6 @@
 #if DEBUG
     NSLog(@"%s", __FUNCTION__);
 #endif
-    [self p_closeTimer];
     _danmuDataList = nil;
     _startTimeBlock = nil;
 }
@@ -59,9 +57,9 @@
         return result;
     }];
     
-    // ??? 已有的也得进行排序
 //    [_danmuDataList addObjectsFromArray:dataTemp];
     
+    // 合并排序
     _danmuDataList = [self insertSort:_danmuDataList secondArray:dataTemp];
 }
 
@@ -111,11 +109,6 @@
 }
 
 #pragma mark - Private
-
-- (void)p_closeTimer {
-    [_managerTimer invalidate];
-    _managerTimer = nil;
-}
 
 #pragma mark - Util
 
