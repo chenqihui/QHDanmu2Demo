@@ -22,6 +22,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 
 #define kQHDanmuPlayUseTime 6.0
 #define kQHDanmuPoolMaxCount 10
+#define kQHReusableCellMaxCount 100
 
 @interface QHDanmuView ()
 
@@ -91,9 +92,6 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 }
 
 - (void)insertData:(NSArray<NSDictionary *> *)data {
-    if (_status == QHDanmuViewStatusStop) {
-        return;
-    }
     if (data == nil || data.count <= 0) {
         return;
     }
@@ -113,9 +111,6 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     }
     [self.danmuDataList addObjectsFromArray:newData];
     
-    if (_status == QHDanmuViewStatusPause) {
-        return;
-    }
     [self p_goDanmuTimer];
 }
 
@@ -133,21 +128,17 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     if (_danmuDataList.count >= _danmuPoolMaxCount) {
         [self.danmuDataList removeObjectAtIndex:(_danmuDataList.count - 1)];
     }
-    
-    if (_status != QHDanmuViewStatusPlay) {
-        return;
-    }
     [self p_goDanmuTimer];
 }
 
-- (void)registerClass:(nullable Class)cellClass forCellReuseIdentifier:(NSString *)identifier {
+- (void)registerClass:(nullable Class)cellClass forCellReuseIdentifier:(nonnull NSString *)identifier {
     [_reusableCellsIdentifierDic setObject:cellClass forKey:identifier];
     QHDanmuViewCell *cell = [(QHDanmuViewCell *)[cellClass alloc] _qhDanmuInitWithReuseIdentifier:identifier];
     [_reusableCells addObject:cell];
     cell = nil;
 }
 
-- (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
+- (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(nonnull NSString *)identifier {
     __block QHDanmuViewCell *cell = nil;
     Class class = [_reusableCellsIdentifierDic objectForKey:identifier];
     if (class != nil) {
@@ -168,28 +159,16 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 }
 
 - (void)cleanData {
-    [self p_closeTimer];
-    /*
-     1、使用 dispatch_barrier_async & dispatch_sync 解决数据竞争，对数组的删除导致崩溃
-     [iOS-线程安全NSMutableArray - 简书](https://www.jianshu.com/p/0b5a97720ebe)
-     2、Group 或者 dispatch_sync 会出现 EXC_BAD_INSTRUCTION 崩溃
-     [ios - EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0) on dispatch_semaphore_dispose - Stack Overflow](https://stackoverflow.com/questions/24337791/exc-bad-instruction-code-exc-i386-invop-subcode-0x0-on-dispatch-semaphore-dis)
-     3、NSLock 也会死锁
-     [iOS 多线程基础 四、多线程安全——线程锁 - 简书](https://www.jianshu.com/p/27af7fae9947)
-     4、使用 @synchronized 则依然会有数据竞争问题
-     */
-    dispatch_barrier_async(_danmuQueue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        });
-        [self.danmuDataList removeAllObjects];
-        [self.reusableCells removeAllObjects];
-        [self p_resetCachedCellsParam];
-    });
+    [self p_cleanData];
 }
 
 - (void)start {
-    _status = QHDanmuViewStatusPlay;
+    if (_status == QHDanmuViewStatusPause) {
+        [self p_resume];
+    }
+    else if (_status == QHDanmuViewStatusStop) {
+        [self p_play];
+    }
 }
 
 - (void)stop {
@@ -197,28 +176,11 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         return;
     }
     _status = QHDanmuViewStatusStop;
-    [self cleanData];
+    [self p_cleanData];
 }
 
 - (void)resume {
-    if (_status != QHDanmuViewStatusPause) {
-        return;
-    }
-    CFTimeInterval playUseTime = kQHDanmuPlayUseTime;
-    if (_dataSourceHas.playUseTimeOfPathwayCell == 1) {
-        playUseTime = [_dataSource playUseTimeOfPathwayCellInDanmuView:self];
-    }
-    for (QHDanmuViewCell *cell in _contentView.subviews) {
-        CFTimeInterval hadPlayUseTime = (self.frame.size.width - cell.frame.origin.x) / cell.param.speed;
-        CFTimeInterval needPlayUseTime = playUseTime - hadPlayUseTime;
-        
-        QHDanmuCellParam newParam = cell.param;
-        newParam.startTime = CFAbsoluteTimeGetCurrent() + hadPlayUseTime;
-        
-        [self p_danmuAnimationOfFlyWithCell:cell param:newParam playUseTime:needPlayUseTime];
-    }
-    _status = QHDanmuViewStatusPlay;
-    [self p_goDanmuTimer];
+    [self p_resume];
 }
 
 - (void)pause {
@@ -258,6 +220,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     _pathwayCount = 0;
     _pathwayHeight = 0;
     _danmuPoolMaxCount = kQHDanmuPoolMaxCount;
+    _reusableCellMaxCount = kQHReusableCellMaxCount;
     _searchPathwayMode = QHDanmuViewSearchPathwayModeDepthFirst;
     
     _dataSourceHas.playUseTimeOfPathwayCell = 0;
@@ -279,6 +242,9 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 }
 
 - (void)p_goDanmuTimer {
+    if (_status != QHDanmuViewStatusPlay) {
+        return;
+    }
     if (_danmuTimer == nil) {
         __weak typeof(self) weakSelf = self;
         _danmuTimer = [NSTimer qheoc_scheduledTimerWithTimeInterval:0.2 block:^{
@@ -296,13 +262,13 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 
 - (BOOL)p_danmuAction {
     
-    UIApplicationState state = [UIApplication sharedApplication].applicationState;
-    if (state == UIApplicationStateBackground) {
+    if (_danmuDataList.count <= 0) {
+        [self p_closeTimer];
         return NO;
     }
     
-    if (_danmuDataList.count <= 0) {
-        [self p_closeTimer];
+    UIApplicationState state = [UIApplication sharedApplication].applicationState;
+    if (state == UIApplicationStateBackground) {
         return NO;
     }
     
@@ -434,15 +400,20 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         cell.frame = goFrame;
     } completion:^(BOOL finished) {
         if (finished) {
-            { // 还原
-                QHDanmuCellParam p = cell.param;
-                p.pathwayNumber = -1;
-                p.startTime = 0;
-                p.speed = 0;
-                p.width = 0;
-                cell.param = p;
+            // 只有 cell 设置了 reuseIdentifier 才能进入复用池
+            if (cell.reuseIdentifier != nil && cell.reuseIdentifier.length >= 0) {
+                if (self.reusableCells.count < self.reusableCellMaxCount) {
+                    { // 还原
+                        QHDanmuCellParam p = cell.param;
+                        p.pathwayNumber = -1;
+                        p.startTime = 0;
+                        p.speed = 0;
+                        p.width = 0;
+                        cell.param = p;
+                    }
+                    [self.reusableCells addObject:cell];
+                }
             }
-            [self.reusableCells addObject:cell];
             [cell removeFromSuperview];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:param.pathwayNumber inSection:0];
             id obj = [self.cachedCellsParam objectForKey:indexPath];
@@ -463,6 +434,54 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         [_cachedCellsParam setObject:[NSNull null] forKey:indexPath];
     }
+}
+
+- (void)p_cleanData {
+    [self p_closeTimer];
+    /*
+     1、使用 dispatch_barrier_async & dispatch_sync 解决数据竞争，对数组的删除导致崩溃
+     [iOS-线程安全NSMutableArray - 简书](https://www.jianshu.com/p/0b5a97720ebe)
+     2、Group 或者 dispatch_sync 会出现 EXC_BAD_INSTRUCTION 崩溃
+     [ios - EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0) on dispatch_semaphore_dispose - Stack Overflow](https://stackoverflow.com/questions/24337791/exc-bad-instruction-code-exc-i386-invop-subcode-0x0-on-dispatch-semaphore-dis)
+     3、NSLock 也会死锁
+     [iOS 多线程基础 四、多线程安全——线程锁 - 简书](https://www.jianshu.com/p/27af7fae9947)
+     4、使用 @synchronized 则依然会有数据竞争问题
+     */
+    dispatch_barrier_async(_danmuQueue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        });
+        [self.danmuDataList removeAllObjects];
+        [self.reusableCells removeAllObjects];
+        [self p_resetCachedCellsParam];
+    });
+}
+
+- (void)p_play {
+    _status = QHDanmuViewStatusPlay;
+    [self p_goDanmuTimer];
+}
+
+- (void)p_resume {
+    if (_status != QHDanmuViewStatusPause) {
+        return;
+    }
+    CFTimeInterval playUseTime = kQHDanmuPlayUseTime;
+    if (_dataSourceHas.playUseTimeOfPathwayCell == 1) {
+        playUseTime = [_dataSource playUseTimeOfPathwayCellInDanmuView:self];
+    }
+    for (QHDanmuViewCell *cell in _contentView.subviews) {
+        // 计算已经运行的时间
+        CFTimeInterval hadPlayUseTime = (self.frame.size.width - cell.frame.origin.x) / cell.param.speed;
+        // 计算还需多少时间
+        CFTimeInterval needPlayUseTime = MAX(playUseTime - hadPlayUseTime, 0.0);
+        
+        QHDanmuCellParam newParam = cell.param;
+        newParam.startTime = CFAbsoluteTimeGetCurrent() - hadPlayUseTime;
+        
+        [self p_danmuAnimationOfFlyWithCell:cell param:newParam playUseTime:needPlayUseTime];
+    }
+    [self p_play];
 }
 
 #pragma mark - Set

@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)insertDanmu:(NSDictionary *)data;
 
+- (void)clean;
 - (void)start;
 - (void)stop;
 - (void)resume;

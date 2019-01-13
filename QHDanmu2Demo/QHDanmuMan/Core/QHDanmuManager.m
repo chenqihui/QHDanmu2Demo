@@ -67,6 +67,7 @@
     [_danmuView insertDataInFirst:data];
 }
 
+// [TODO] 增加选取限制范围（即向前几秒或者几条弹幕），处理 pause/stop 时候时间过久的数据堆积
 - (void)setMediaPlayAbsoluteTime:(CFAbsoluteTime)mediaPlayAbsoluteTime {
     _mediaPlayAbsoluteTime = mediaPlayAbsoluteTime;
     int index = -1;
@@ -91,13 +92,16 @@
     }
 }
 
+- (void)clean {
+    [_danmuDataList removeAllObjects];
+}
+
 - (void)start {
     [_danmuView start];
 }
 
 - (void)stop {
-    [_danmuDataList removeAllObjects];
-    [_danmuView cleanData];
+    [_danmuView stop];
 }
 
 - (void)resume {

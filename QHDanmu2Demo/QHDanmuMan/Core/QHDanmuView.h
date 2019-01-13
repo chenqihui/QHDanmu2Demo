@@ -71,12 +71,14 @@ typedef NS_ENUM(NSInteger, QHDanmuViewSearchPathwayMode) {
 @property (nonatomic) NSUInteger danmuPoolMaxCount;
 // 轨道搜索模式，默认 DepthFirst
 @property (nonatomic) QHDanmuViewSearchPathwayMode searchPathwayMode;
+// 复用弹幕池容量，默认 100
+@property (nonatomic) NSUInteger reusableCellMaxCount;
 
 - (id)initWithFrame:(CGRect)frame style:(QHDanmuViewStyle)theStyle;
 
-- (void)registerClass:(nullable Class)cellClass forCellReuseIdentifier:(NSString *)identifier;
+- (void)registerClass:(nullable Class)cellClass forCellReuseIdentifier:(nonnull NSString *)identifier;
 
-- (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+- (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(nonnull NSString *)identifier;
 
 - (void)insertData:(NSArray<NSDictionary *> *)data;
 /**
