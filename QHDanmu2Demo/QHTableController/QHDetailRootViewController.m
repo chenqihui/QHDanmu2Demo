@@ -115,7 +115,7 @@ static int pwId = 0;
 
 - (void)b2Action {
     pwId++;
-    [_danmuView insertData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", pwId]}]];
+    [_danmuView insertData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", pwId]}] withRowAnimation:QHDanmuViewCellAnimationRight];
 //    [_danmuView insertDanmuData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"讲得挺好，一听就明白。"]}]];
 }
 

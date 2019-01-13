@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QHDanmuModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,8 @@ typedef struct QHDanmuCellParam QHDanmuCellParam;
 @property (nonatomic, readonly, strong) UIView *contentView;
 @property (nonatomic, readonly, strong, nullable) UILabel *textLabel;
 @property (nonatomic) QHDanmuCellParam param;
+// [iOS copy和mutableCopy 整理 - 简书](https://www.jianshu.com/p/d01429a4b5c0)
+@property (nonatomic, strong, nullable) QHDanmuModel *model;
 
 - (instancetype)initWithStyle:(QHDanmuViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier;
 

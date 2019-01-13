@@ -30,7 +30,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 
 @property (nonatomic, strong) UIView *contentView;
 
-@property (nonatomic, strong) NSMutableArray<NSDictionary *> *danmuDataList;
+@property (nonatomic, strong) NSMutableArray<QHDanmuModel *> *danmuDataList;
 @property (nonatomic, strong) NSTimer *danmuTimer;
 @property (nonatomic, readwrite) QHDanmuViewStyle style;
 @property (nonatomic, readwrite) QHDanmuViewStatus status;
@@ -91,7 +91,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     return self;
 }
 
-- (void)insertData:(NSArray<NSDictionary *> *)data {
+- (void)insertData:(nonnull NSArray<NSDictionary *> *)data withRowAnimation:(QHDanmuViewCellAnimation)animation {
     if (data == nil || data.count <= 0) {
         return;
     }
@@ -109,12 +109,16 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
             newData = [data subarrayWithRange:NSMakeRange(0, s)];
         }
     }
-    [self.danmuDataList addObjectsFromArray:newData];
+    [newData enumerateObjectsUsingBlock:^(NSDictionary *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        QHDanmuModel *model = [[QHDanmuModel alloc] initWithData:obj];
+        model.animation = animation;
+        [self.danmuDataList addObject:model];
+    }];
     
     [self p_goDanmuTimer];
 }
 
-- (void)insertDataInFirst:(NSDictionary *)data {
+- (void)insertDataInFirst:(nonnull NSDictionary *)data withRowAnimation:(QHDanmuViewCellAnimation)animation {
     if (data == nil) {
         return;
     }
@@ -123,7 +127,8 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         return;
     }
     
-    [self.danmuDataList insertObject:data atIndex:0];
+    QHDanmuModel *model = [[QHDanmuModel alloc] initWithData:data];
+    [self.danmuDataList insertObject:model atIndex:0];
     
     if (_danmuDataList.count >= _danmuPoolMaxCount) {
         [self.danmuDataList removeObjectAtIndex:(_danmuDataList.count - 1)];
@@ -272,8 +277,8 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         return NO;
     }
     
-    NSDictionary *data = _danmuDataList.firstObject;
-    if (data == nil) {
+    QHDanmuModel *model = _danmuDataList.firstObject;
+    if (model == nil || model.data == nil) {
         return NO;
     }
     
@@ -282,36 +287,42 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         playUseTime = [_dataSource playUseTimeOfPathwayCellInDanmuView:self];
     }
     
-    QHDanmuCellParam newParam = [self p_danmuParamWithPlayUseTime:playUseTime];
+    QHDanmuCellParam newParam = [self p_danmuParamWithModel:model playUseTime:playUseTime];
     
     if (newParam.pathwayNumber == -1) {
         if (_dataSourceHas.waitWhenNowHasNoPathway == 1) {
-            if ([_dataSource waitWhenNowHasNoPathwayInDanmuView:self withData:data] == NO) {
-                [_danmuDataList removeObject:data];
+            if ([_dataSource waitWhenNowHasNoPathwayInDanmuView:self withData:model.data] == NO) {
+                [_danmuDataList removeObject:model];
             }
         }
         return NO;
     }
     
-    QHDanmuViewCell *cell = [_dataSource danmuView:self cellForPathwayWithData:data];
+    QHDanmuViewCell *cell = [_dataSource danmuView:self cellForPathwayWithData:model.data];
     if (cell == nil) {
-        [_danmuDataList removeObject:data];
+        [_danmuDataList removeObject:model];
         return NO;
     }
     cell.frame = CGRectMake(self.frame.size.width, (_pathwayHeight * newParam.pathwayNumber), newParam.width, _pathwayHeight);
     [_contentView addSubview:cell];
+    cell.model = model;
     
     [self p_danmuAnimationOfFlyWithCell:cell param:newParam playUseTime:playUseTime];
     
     // 使用完清除弹幕池数据
-    [_danmuDataList removeObject:data];
+    [_danmuDataList removeObject:model];
     return YES;
 }
 
-- (QHDanmuCellParam)p_danmuParamWithPlayUseTime:(CGFloat)playUseTime {
-    NSDictionary *data = _danmuDataList.firstObject;
-    QHDanmuCellParam newParam;
+- (QHDanmuCellParam)p_danmuParamWithModel:(QHDanmuModel *)model playUseTime:(CGFloat)playUseTime {
+    __block QHDanmuCellParam newParam;
     newParam.pathwayNumber = -1;
+    
+    // 记录宽度 & 计算速度
+    void(^func)(void) = ^() {
+        newParam.width = [self.delegate danmuView:self widthForPathwayWithData:model.data];
+        newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+    };
     
     // 广度优先：先搜索是否有空闲的轨道，有则使用，无则再走深度优先
     if (_searchPathwayMode == QHDanmuViewSearchPathwayModeBreadthFirst) {
@@ -321,9 +332,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
             if ([obj isKindOfClass:[NSNull class]] == YES) {
                 // 记录时间
                 newParam.startTime = CFAbsoluteTimeGetCurrent();
-                // 记录宽度 & 计算速度
-                newParam.width = [_delegate danmuView:self widthForPathwayWithData:data];
-                newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+                func();
                 newParam.pathwayNumber = i;
                 
                 break;
@@ -342,9 +351,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         id obj = [_cachedCellsParam objectForKey:indexPath];
         if ([obj isKindOfClass:[NSNull class]] == YES) {
-            // 记录宽度 & 计算速度
-            newParam.width = [_delegate danmuView:self widthForPathwayWithData:data];
-            newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+            func();
             newParam.pathwayNumber = i;
         }
         else if ([obj isKindOfClass:[NSValue class]] == YES) {
@@ -354,9 +361,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
             CFTimeInterval spaceTime = newParam.startTime - lastParam.startTime;
             if (spaceTime * lastParam.speed >= lastParam.width) {
                 
-                // 记录宽度 & 计算速度
-                newParam.width = [_delegate danmuView:self widthForPathwayWithData:data];
-                newParam.speed = (newParam.width + self.frame.size.width) / playUseTime;
+                func();
                 
                 // 最后一个弹幕已完全显示在轨道
                 // 如果最后弹幕的速度大于新的弹幕速度，则该轨道可与使用
@@ -410,6 +415,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
                         p.speed = 0;
                         p.width = 0;
                         cell.param = p;
+                        cell.model = nil;
                     }
                     [self.reusableCells addObject:cell];
                 }

@@ -28,6 +28,7 @@
     
     _contentView = nil;
     _textLabel = nil;
+    _model = nil;
 }
 
 - (instancetype)init {

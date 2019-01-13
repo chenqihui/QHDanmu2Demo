@@ -80,11 +80,11 @@ typedef NS_ENUM(NSInteger, QHDanmuViewSearchPathwayMode) {
 
 - (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(nonnull NSString *)identifier;
 
-- (void)insertData:(NSArray<NSDictionary *> *)data;
+- (void)insertData:(nonnull NSArray<NSDictionary *> *)data withRowAnimation:(QHDanmuViewCellAnimation)animation;
 /**
  弹幕加入到弹幕池最前面
  */
-- (void)insertDataInFirst:(NSDictionary *)data;
+- (void)insertDataInFirst:(nonnull NSDictionary *)data withRowAnimation:(QHDanmuViewCellAnimation)animation;
 - (void)cleanData;
 
 - (void)start;

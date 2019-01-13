@@ -50,7 +50,7 @@
 #pragma mark - Action
 
 - (IBAction)testSendAction:(id)sender {
-    [_danmuView insertData:@[@{@"body": @{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", 2]}}, @{@"body": @{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", 2]}}]];
+    [_danmuView insertData:@[@{@"body": @{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", 2]}}, @{@"body": @{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", 2]}}] withRowAnimation:QHDanmuViewCellAnimationRight];
 }
 
 - (IBAction)switchChangeAction:(id)sender {
