@@ -19,7 +19,7 @@
 - (instancetype)initWithData:(NSDictionary *)data {
     self = [super init];
     if (self) {
-        _animation = QHDanmuViewCellAnimationRight;
+        _animationSection = QHDanmuViewCellAnimationSectionRight;
         _data = data;
     }
     return self;
@@ -28,7 +28,7 @@
 // [关于使用Copy崩溃的问题 - 简书](https://www.jianshu.com/p/7c5bbea5d6e4)
 - (id)copyWithZone:(NSZone *)zone {
     QHDanmuModel *model = [[QHDanmuModel alloc] initWithData:self.data];
-    model.animation = self.animation;
+    model.animationSection = self.animationSection;
     return model;
 }
 

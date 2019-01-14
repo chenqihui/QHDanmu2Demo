@@ -82,16 +82,16 @@
 
 #pragma mark - QHDanmuViewDataSource
 
-- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView *)danmuView {
+- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView *)danmuView forAnimationSection:(NSInteger)section {
     return 10;
 }
 
-- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView *)danmuView {
+- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView *)danmuView forAnimationSection:(NSInteger)section {
     CGSize size = [QHBaseUtil getSizeWithString:@"陈" fontSize:15];
     return size.height;
 }
 
-- (QHDanmuViewCell *)danmuView:(QHDanmuView *)danmuView cellForPathwayWithData:(NSDictionary *)data {
+- (QHDanmuViewCell *)danmuView:(QHDanmuView *)danmuView cellForPathwayWithData:(NSDictionary *)data forAnimationSection:(NSInteger)section {
     QHDanmuViewCell *cell = [danmuView dequeueReusableCellWithIdentifier:@"1"];
     cell.textLabel.attributedText = [QHBaseUtil toHTML:data[@"c"] fontSize:15];
     return cell;
@@ -99,7 +99,7 @@
 
 #pragma mark - QHDanmuViewDelegate
 
-- (CGFloat)danmuView:(QHDanmuView *)danmuView widthForPathwayWithData:(NSDictionary *)data {
+- (CGFloat)danmuView:(QHDanmuView *)danmuView widthForPathwayWithData:(NSDictionary *)data forAnimationSection:(NSInteger)section {
     NSAttributedString *c = [QHBaseUtil toHTML:data[@"c"] fontSize:15];
     return c.size.width;
 }
@@ -115,7 +115,7 @@ static int pwId = 0;
 
 - (void)b2Action {
     pwId++;
-    [_danmuView insertData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", pwId]}] withRowAnimation:QHDanmuViewCellAnimationRight];
+    [_danmuView insertData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"(%i)-讲得挺好，一听就明白。", pwId]}] withCellAnimation:QHDanmuViewCellAnimationSectionRight];
 //    [_danmuView insertDanmuData:@[@{@"n": @"小白", @"c": [NSString stringWithFormat:@"讲得挺好，一听就明白。"]}]];
 }
 

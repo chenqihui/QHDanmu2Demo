@@ -64,7 +64,7 @@
 }
 
 - (void)insertDanmu:(NSDictionary *)data {
-    [_danmuView insertDataInFirst:data withRowAnimation:QHDanmuViewCellAnimationRight];
+    [_danmuView insertDataInFirst:data withCellAnimation:QHDanmuViewCellAnimationSectionRight];
 }
 
 // [TODO] 增加选取限制范围（即向前几秒或者几条弹幕），处理 pause/stop 时候时间过久的数据堆积
@@ -86,7 +86,7 @@
         }
         if (index >= 0) {
             NSArray *inData = [_danmuDataList subarrayWithRange:NSMakeRange(0, index + 1)];
-            [_danmuView insertData:inData withRowAnimation:QHDanmuViewCellAnimationRight];
+            [_danmuView insertData:inData withCellAnimation:QHDanmuViewCellAnimationSectionRight];
             [_danmuDataList removeObjectsInArray:inData];
         }
     }

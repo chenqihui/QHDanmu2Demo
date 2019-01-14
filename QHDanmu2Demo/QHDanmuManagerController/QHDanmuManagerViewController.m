@@ -81,23 +81,23 @@ NSString * const kDanmuTimeKey = @"v";
 
 #pragma mark - QHDanmuViewDataSource
 
-- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView *)danmuView {
+- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView *)danmuView forAnimationSection:(NSInteger)section {
     return 3;
 }
 
-- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView *)danmuView {
+- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView *)danmuView forAnimationSection:(NSInteger)section {
     CGSize size = [QHBaseUtil getSizeWithString:@"陈" fontSize:kDanmuFontSize];
     return size.height;
 }
 
-- (QHDanmuViewCell *)danmuView:(QHDanmuView *)danmuView cellForPathwayWithData:(NSDictionary *)data {
+- (QHDanmuViewCell *)danmuView:(QHDanmuView *)danmuView cellForPathwayWithData:(NSDictionary *)data forAnimationSection:(NSInteger)section {
     NSString *s = [NSString stringWithFormat:@"%@-%@", data[@"v"], data[@"c"]];
     QHDanmuViewCell *cell = [danmuView dequeueReusableCellWithIdentifier:@"1"];
     cell.textLabel.attributedText = [QHBaseUtil toHTML:s fontSize:kDanmuFontSize];
     return cell;
 }
 
-- (BOOL)waitWhenNowHasNoPathwayInDanmuView:(QHDanmuView * _Nonnull)danmuView withData:(NSDictionary * _Nonnull)data {
+- (BOOL)waitWhenNowHasNoPathwayInDanmuView:(QHDanmuView * _Nonnull)danmuView withData:(NSDictionary * _Nonnull)data forAnimationSection:(NSInteger)section {
     if ([data[@"x"] integerValue] == 1) {
         return YES;
     }
@@ -106,7 +106,7 @@ NSString * const kDanmuTimeKey = @"v";
 
 #pragma mark - QHDanmuViewDelegate
 
-- (CGFloat)danmuView:(QHDanmuView *)danmuView widthForPathwayWithData:(NSDictionary *)data {
+- (CGFloat)danmuView:(QHDanmuView *)danmuView widthForPathwayWithData:(NSDictionary *)data forAnimationSection:(NSInteger)section {
     NSString *s = [NSString stringWithFormat:@"%@-%@", data[@"v"], data[@"c"]];
     NSAttributedString *c = [QHBaseUtil toHTML:s fontSize:kDanmuFontSize];
     return c.size.width;

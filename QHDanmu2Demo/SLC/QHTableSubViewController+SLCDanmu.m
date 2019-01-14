@@ -21,16 +21,16 @@
 
 #pragma mark - QHDanmuViewDataSource
 
-- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView * _Nonnull)danmuView {
+- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView * _Nonnull)danmuView forAnimationSection:(NSInteger)section {
     return 2;
 }
 
-- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView {
+- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView forAnimationSection:(NSInteger)section {
     return kSLCDanmuViewCellHeight;
 }
 
 // ??? 避免两次转换 NSAttributedString
-- (QHDanmuViewCell * _Nullable)danmuView:(QHDanmuView * _Nonnull)danmuView cellForPathwayWithData:(NSDictionary * _Nonnull)data {
+- (QHDanmuViewCell * _Nullable)danmuView:(QHDanmuView * _Nonnull)danmuView cellForPathwayWithData:(NSDictionary * _Nonnull)data forAnimationSection:(NSInteger)section {
     SLCDanmuViewCell *cell = [danmuView dequeueReusableCellWithIdentifier:kSLCDanmuViewCellContentIdentifier];
     cell.contentTextLabel.attributedText = [QHTableSubViewController toSay:data];
     return cell;
@@ -38,7 +38,7 @@
 
 #pragma mark - QHDanmuViewDelegate
 
-- (CGFloat)danmuView:(QHDanmuView * _Nonnull)danmuView widthForPathwayWithData:(NSDictionary * _Nonnull)data {
+- (CGFloat)danmuView:(QHDanmuView * _Nonnull)danmuView widthForPathwayWithData:(NSDictionary * _Nonnull)data forAnimationSection:(NSInteger)section {
     NSAttributedString *c = [QHTableSubViewController toSay:data];
     CGFloat w = c.size.width + kSLCDanmuViewCellEdgeInsets.left + kSLCDanmuViewCellEdgeInsets.right;
     return w;

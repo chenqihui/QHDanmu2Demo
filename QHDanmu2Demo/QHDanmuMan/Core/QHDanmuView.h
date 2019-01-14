@@ -16,29 +16,29 @@
 
 @required
 
-- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView * _Nonnull)danmuView;
+- (NSInteger)numberOfPathwaysInDanmuView:(QHDanmuView * _Nonnull)danmuView forAnimationSection:(NSInteger)section;
 
-- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView;
+- (CGFloat)heightOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView forAnimationSection:(NSInteger)section;
 
-- (QHDanmuViewCell * _Nullable)danmuView:(QHDanmuView * _Nonnull)danmuView cellForPathwayWithData:(NSDictionary * _Nonnull)data;
+- (QHDanmuViewCell * _Nullable)danmuView:(QHDanmuView * _Nonnull)danmuView cellForPathwayWithData:(NSDictionary * _Nonnull)data forAnimationSection:(NSInteger)section;
 
 @optional
 
 /**
  设置弹幕飞行的时间
  */
-- (CFTimeInterval)playUseTimeOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView;
+- (CFTimeInterval)playUseTimeOfPathwayCellInDanmuView:(QHDanmuView * _Nonnull)danmuView forAnimationSection:(NSInteger)section;
 
 /**
  设置弹幕触发时是否在找不到轨道后的处理，YES 为 删除，NO 为 等待，默认 NO
  */
-- (BOOL)waitWhenNowHasNoPathwayInDanmuView:(QHDanmuView * _Nonnull)danmuView withData:(NSDictionary * _Nonnull)data;
+- (BOOL)waitWhenNowHasNoPathwayInDanmuView:(QHDanmuView * _Nonnull)danmuView withData:(NSDictionary * _Nonnull)data forAnimationSection:(NSInteger)section;
 
 @end
 
 @protocol QHDanmuViewDelegate <NSObject>
 
-- (CGFloat)danmuView:(QHDanmuView * _Nonnull)danmuView widthForPathwayWithData:(NSDictionary * _Nonnull)data;
+- (CGFloat)danmuView:(QHDanmuView * _Nonnull)danmuView widthForPathwayWithData:(NSDictionary * _Nonnull)data forAnimationSection:(NSInteger)section;
 
 @end
 
@@ -80,11 +80,11 @@ typedef NS_ENUM(NSInteger, QHDanmuViewSearchPathwayMode) {
 
 - (nullable __kindof QHDanmuViewCell *)dequeueReusableCellWithIdentifier:(nonnull NSString *)identifier;
 
-- (void)insertData:(nonnull NSArray<NSDictionary *> *)data withRowAnimation:(QHDanmuViewCellAnimation)animation;
+- (void)insertData:(nonnull NSArray<NSDictionary *> *)data withCellAnimation:(QHDanmuViewCellAnimationSection)animation;
 /**
  弹幕加入到弹幕池最前面
  */
-- (void)insertDataInFirst:(nonnull NSDictionary *)data withRowAnimation:(QHDanmuViewCellAnimation)animation;
+- (void)insertDataInFirst:(nonnull NSDictionary *)data withCellAnimation:(QHDanmuViewCellAnimationSection)animation;
 - (void)cleanData;
 
 - (void)start;

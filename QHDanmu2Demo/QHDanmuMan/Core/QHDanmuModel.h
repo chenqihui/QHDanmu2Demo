@@ -11,14 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, QHDanmuViewCellAnimation) {
-    QHDanmuViewCellAnimationRight,
-    QHDanmuViewCellAnimationFade,
+typedef NS_ENUM(NSInteger, QHDanmuViewCellAnimationSection) {
+    QHDanmuViewCellAnimationSectionRight = 0,
+    QHDanmuViewCellAnimationSectionFade = 1,
 };
 
 @interface QHDanmuModel : NSObject
 
-@property (nonatomic) QHDanmuViewCellAnimation animation;
+@property (nonatomic) QHDanmuViewCellAnimationSection animationSection;
 @property (nonatomic, copy, readonly) NSDictionary *data;
 
 - (instancetype)initWithData:(NSDictionary *)data;
