@@ -228,14 +228,19 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     }
     _status = QHDanmuViewStatusPause;
     [self p_closeTimer];
-    for (QHDanmuViewCell *cell in _contentView.subviews) {
-        CALayer *layer = cell.layer;
-        CGRect rect = cell.frame;
-        if (layer.presentationLayer) {
-            rect = ((CALayer *)layer.presentationLayer).frame;
+    
+    for (int j = 0; j < _pathwayAnimationSection; j++) {
+        if (j == QHDanmuViewCellAnimationSectionRight) {
+            for (QHDanmuViewCell *cell in _contentView.subviews) {
+                CALayer *layer = cell.layer;
+                CGRect rect = cell.frame;
+                if (layer.presentationLayer) {
+                    rect = ((CALayer *)layer.presentationLayer).frame;
+                }
+                cell.frame = rect;
+                [cell.layer removeAllAnimations];
+            }
         }
-        cell.frame = rect;
-        [cell.layer removeAllAnimations];
     }
 }
 
@@ -518,25 +523,23 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
     if (_status != QHDanmuViewStatusPause) {
         return;
     }
-    _status = QHDanmuViewStatusPlay;
     CFTimeInterval playUseTime = kQHDanmuPlayUseTime;
     for (int j = 0; j < _pathwayAnimationSection; j++) {
         if (_dataSourceHas.playUseTimeOfPathwayCell == 1) {
             playUseTime = [_dataSource playUseTimeOfPathwayCellInDanmuView:self forAnimationSection:j];
         }
-        for (QHDanmuViewCell *cell in _contentView.subviews) {
-            if (cell.model.animationSection != j) {
-                return;
+        if (j == QHDanmuViewCellAnimationSectionRight) {
+            for (QHDanmuViewCell *cell in _contentView.subviews) {
+                // 计算已经运行的时间
+                CFTimeInterval hadPlayUseTime = (self.frame.size.width - cell.frame.origin.x) / cell.param.speed;
+                // 计算还需多少时间
+                CFTimeInterval needPlayUseTime = MAX(playUseTime - hadPlayUseTime, 0.0);
+                
+                QHDanmuCellParam newParam = cell.param;
+                newParam.startTime = CFAbsoluteTimeGetCurrent() - hadPlayUseTime;
+                
+                [self p_danmuAnimationOfFlyWithCell:cell param:newParam playUseTime:needPlayUseTime];
             }
-            // 计算已经运行的时间
-            CFTimeInterval hadPlayUseTime = (self.frame.size.width - cell.frame.origin.x) / cell.param.speed;
-            // 计算还需多少时间
-            CFTimeInterval needPlayUseTime = MAX(playUseTime - hadPlayUseTime, 0.0);
-            
-            QHDanmuCellParam newParam = cell.param;
-            newParam.startTime = CFAbsoluteTimeGetCurrent() - hadPlayUseTime;
-            
-            [self p_danmuAnimationOfFlyWithCell:cell param:newParam playUseTime:needPlayUseTime];
         }
     }
     [self p_play];
