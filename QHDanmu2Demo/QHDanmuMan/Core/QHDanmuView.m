@@ -262,7 +262,7 @@ typedef struct QHDanmuViewDataSourceHas QHDanmuViewDataSourceHas;
 
 - (BOOL)p_danmuAction {
     
-    if (_danmuDataList.count <= 0) {
+    if (_danmuDataList.count <= 0 || _status != QHDanmuViewStatusPlay) {
         [self p_closeTimer];
         return NO;
     }
