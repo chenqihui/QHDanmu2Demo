@@ -29,6 +29,7 @@
 		74B190B021E75365009C5F03 /* QHDanmuManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B190AE21E75365009C5F03 /* QHDanmuManagerViewController.m */; };
 		74B190B121E75365009C5F03 /* QHDanmuManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */; };
 		74B190B321E756E1009C5F03 /* QHDanmuSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74B190B221E756E1009C5F03 /* QHDanmuSource.plist */; };
+		74D503D8228C1FEA00574E19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D503D7228C1FEA00574E19 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		74B190AE21E75365009C5F03 /* QHDanmuManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHDanmuManagerViewController.m; sourceTree = "<group>"; };
 		74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QHDanmuManagerViewController.xib; sourceTree = "<group>"; };
 		74B190B221E756E1009C5F03 /* QHDanmuSource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHDanmuSource.plist; sourceTree = "<group>"; };
+		74D503D7228C1FEA00574E19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				741C6EB221DF36A900ED6E17 /* QHTableController */,
 				741C6EB921DF36A900ED6E17 /* QHTableSubController */,
 				74B190AC21E752FE009C5F03 /* QHDanmuManagerController */,
+				74D503D7228C1FEA00574E19 /* Assets.xcassets */,
 			);
 			path = QHDanmu2Demo;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				741C6EC621DF36AB00ED6E17 /* Assets.xcassets in Resources */,
 				741C6EC421DF36A900ED6E17 /* Main.storyboard in Resources */,
 				74B190B121E75365009C5F03 /* QHDanmuManagerViewController.xib in Resources */,
+				74D503D8228C1FEA00574E19 /* Assets.xcassets in Resources */,
 				7432B52C21E834FA00862465 /* QHDanmuSourceNext.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
