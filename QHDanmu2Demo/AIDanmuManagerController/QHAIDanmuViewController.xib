@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QHAIDanmuViewController">
+            <connections>
+                <outlet property="showMainV" destination="rf6-O6-4Hy" id="S7y-Yf-foe"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gA-hz-wmh">
+                    <rect key="frame" x="0.0" y="94" width="375" height="260"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg1" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-Ia-rgS">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rf6-O6-4Hy">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="260" id="7Qm-7c-eRw"/>
+                        <constraint firstItem="rf6-O6-4Hy" firstAttribute="top" secondItem="3gA-hz-wmh" secondAttribute="top" id="M6V-xv-3Ch"/>
+                        <constraint firstItem="rf6-O6-4Hy" firstAttribute="leading" secondItem="3gA-hz-wmh" secondAttribute="leading" id="Ofo-vQ-fWL"/>
+                        <constraint firstAttribute="trailing" secondItem="rf6-O6-4Hy" secondAttribute="trailing" id="XIi-rK-Bfl"/>
+                        <constraint firstAttribute="bottom" secondItem="rf6-O6-4Hy" secondAttribute="bottom" id="abv-Gk-nhh"/>
+                        <constraint firstItem="wG5-Ia-rgS" firstAttribute="leading" secondItem="3gA-hz-wmh" secondAttribute="leading" id="dyW-Jv-F51"/>
+                        <constraint firstAttribute="bottom" secondItem="wG5-Ia-rgS" secondAttribute="bottom" id="mi1-KN-Jht"/>
+                        <constraint firstItem="wG5-Ia-rgS" firstAttribute="top" secondItem="3gA-hz-wmh" secondAttribute="top" id="qvW-n7-vj6"/>
+                        <constraint firstAttribute="trailing" secondItem="wG5-Ia-rgS" secondAttribute="trailing" id="rRX-F3-FSq"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwc-gH-FIq">
+                    <rect key="frame" x="169.5" y="372" width="36" height="30"/>
+                    <state key="normal" title="Send"/>
+                    <connections>
+                        <action selector="sendAction:" destination="-1" eventType="touchUpInside" id="Cda-dd-KjV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3gA-hz-wmh" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Dsp-T4-3bM"/>
+                <constraint firstItem="3gA-hz-wmh" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="Ea7-Su-ucr"/>
+                <constraint firstItem="zwc-gH-FIq" firstAttribute="top" secondItem="3gA-hz-wmh" secondAttribute="bottom" constant="18" id="cG6-9Z-I2q"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3gA-hz-wmh" secondAttribute="trailing" id="gXm-Rj-4od"/>
+                <constraint firstItem="zwc-gH-FIq" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="lHm-Cv-Bpx"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg1" width="360" height="351"/>
+    </resources>
+</document>

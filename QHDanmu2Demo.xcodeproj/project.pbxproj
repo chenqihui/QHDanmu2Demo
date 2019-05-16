@@ -30,6 +30,8 @@
 		74B190B121E75365009C5F03 /* QHDanmuManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */; };
 		74B190B321E756E1009C5F03 /* QHDanmuSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74B190B221E756E1009C5F03 /* QHDanmuSource.plist */; };
 		74D503D8228C1FEA00574E19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D503D7228C1FEA00574E19 /* Assets.xcassets */; };
+		74D503DD228D6E9A00574E19 /* QHAIDanmuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D503DB228D6E9A00574E19 /* QHAIDanmuViewController.m */; };
+		74D503DE228D6E9A00574E19 /* QHAIDanmuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D503DC228D6E9A00574E19 /* QHAIDanmuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,9 @@
 		74B190AF21E75365009C5F03 /* QHDanmuManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QHDanmuManagerViewController.xib; sourceTree = "<group>"; };
 		74B190B221E756E1009C5F03 /* QHDanmuSource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = QHDanmuSource.plist; sourceTree = "<group>"; };
 		74D503D7228C1FEA00574E19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		74D503DA228D6E9A00574E19 /* QHAIDanmuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHAIDanmuViewController.h; sourceTree = "<group>"; };
+		74D503DB228D6E9A00574E19 /* QHAIDanmuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QHAIDanmuViewController.m; sourceTree = "<group>"; };
+		74D503DC228D6E9A00574E19 /* QHAIDanmuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QHAIDanmuViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,7 @@
 				741C6EBF21DF36A900ED6E17 /* ViewController.h */,
 				741C6EC021DF36A900ED6E17 /* ViewController.m */,
 				741C6EC221DF36A900ED6E17 /* Main.storyboard */,
+				74D503D9228D6E3E00574E19 /* AIDanmuManagerController */,
 				741C6EC521DF36AB00ED6E17 /* Assets.xcassets */,
 				741C6EC721DF36AB00ED6E17 /* LaunchScreen.storyboard */,
 				741C6ECA21DF36AB00ED6E17 /* Info.plist */,
@@ -202,6 +208,16 @@
 			path = QHDanmuManagerController;
 			sourceTree = "<group>";
 		};
+		74D503D9228D6E3E00574E19 /* AIDanmuManagerController */ = {
+			isa = PBXGroup;
+			children = (
+				74D503DA228D6E9A00574E19 /* QHAIDanmuViewController.h */,
+				74D503DB228D6E9A00574E19 /* QHAIDanmuViewController.m */,
+				74D503DC228D6E9A00574E19 /* QHAIDanmuViewController.xib */,
+			);
+			path = AIDanmuManagerController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74B190B321E756E1009C5F03 /* QHDanmuSource.plist in Resources */,
+				74D503DE228D6E9A00574E19 /* QHAIDanmuViewController.xib in Resources */,
 				741C6EBE21DF36A900ED6E17 /* QHTableSubViewController.xib in Resources */,
 				741C6EC921DF36AB00ED6E17 /* LaunchScreen.storyboard in Resources */,
 				741C6EC621DF36AB00ED6E17 /* Assets.xcassets in Resources */,
@@ -288,6 +305,7 @@
 				74B1904F21E493E4009C5F03 /* QHTableSubViewController+SLCDanmu.m in Sources */,
 				743DE99621DF54F800726C75 /* NSTimer+QHEOCBlocksSupport.m in Sources */,
 				741C6EB121DF36A900ED6E17 /* AppDelegate.m in Sources */,
+				74D503DD228D6E9A00574E19 /* QHAIDanmuViewController.m in Sources */,
 				741C6EBC21DF36A900ED6E17 /* QHTableSubViewController.m in Sources */,
 				741C6ECC21DF36AB00ED6E17 /* main.m in Sources */,
 				74B190B021E75365009C5F03 /* QHDanmuManagerViewController.m in Sources */,
