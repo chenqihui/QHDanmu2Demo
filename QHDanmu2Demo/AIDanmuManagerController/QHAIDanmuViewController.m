@@ -11,20 +11,30 @@
 #import "QHDanmuView.h"
 #import "QHViewUtil.h"
 #import "QHBaseUtil.h"
+#import "NSTimer+QHEOCBlocksSupport.h"
 
 @interface QHAIDanmuViewController () <QHDanmuViewDataSource, QHDanmuViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *showMainV;
 
 @property (nonatomic, strong) QHDanmuView *danmuView;
+@property (nonatomic, strong) NSTimer *aiFaceTimer;
+@property (nonatomic) NSInteger faceIn;
 
 @end
 
 @implementation QHAIDanmuViewController
 
+- (void)dealloc {
+    [_aiFaceTimer invalidate];
+    _aiFaceTimer = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    _faceIn = 0;
     
     QHDanmuView *danmuView = [[QHDanmuView alloc] initWithFrame:CGRectZero style:QHDanmuViewStyleCustom];
     danmuView.dataSource = self;
@@ -36,7 +46,7 @@
     [danmuView registerClass:[QHDanmuViewCell class] forCellReuseIdentifier:@"1"];
     _danmuView = danmuView;
     
-    [self p_addAIMask];
+    [self p_goAIFaceTimer];
 }
 
 #pragma mark - Private
@@ -58,11 +68,15 @@
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     
-    CGFloat radiusW = _showMainV.frame.size.width/2;
-    CGFloat radiusH = _showMainV.frame.size.height/2;
-    CGFloat centerX = radiusW;
-    CGFloat centerY = radiusH;
+    CGFloat ssX = 60;
+    CGFloat ssY = 20;
+    CGFloat centerX = _showMainV.frame.size.width/2 + (ssX * _faceIn);
+    CGFloat centerY = _showMainV.frame.size.height/2 + (ssY * _faceIn);
     CGFloat radius = _showMainV.frame.size.height/2 - 40;
+    CGFloat spaceL = centerX;
+    CGFloat spaceR = _showMainV.frame.size.width - centerX;
+    CGFloat spaceT = centerY;
+    CGFloat spaceB = _showMainV.frame.size.height - centerY;
     
     UIBezierPath *bezierpath = [UIBezierPath bezierPath];
     [bezierpath moveToPoint:CGPointMake(centerX + radius, centerY)];
@@ -71,12 +85,12 @@
     [bezierpath addCurveToPoint:CGPointMake(centerX, centerY + radius) controlPoint1:CGPointMake(centerX - radius, centerY) controlPoint2:CGPointMake(centerX - radius, centerY + radius)];
     [bezierpath addCurveToPoint:CGPointMake(centerX + radius, centerY - 0.00001) controlPoint1:CGPointMake(centerX, centerY + radius) controlPoint2:CGPointMake(centerX + radius, centerY + radius)];
     
-    [bezierpath addLineToPoint:CGPointMake(centerX + radiusW, centerY - 0.00001)];
-    [bezierpath addLineToPoint:CGPointMake(centerX + radiusW, centerY + radiusH)];
-    [bezierpath addLineToPoint:CGPointMake(centerX - radiusW, centerY + radiusH)];
-    [bezierpath addLineToPoint:CGPointMake(centerX - radiusW, centerY - radiusH)];
-    [bezierpath addLineToPoint:CGPointMake(centerX + radiusW, centerY - radiusH)];
-    [bezierpath addLineToPoint:CGPointMake(centerX + radiusW, centerY - 0.00001)];
+    [bezierpath addLineToPoint:CGPointMake(centerX + spaceR, centerY - 0.00001)];
+    [bezierpath addLineToPoint:CGPointMake(centerX + spaceR, centerY + spaceB)];
+    [bezierpath addLineToPoint:CGPointMake(centerX - spaceL, centerY + spaceB)];
+    [bezierpath addLineToPoint:CGPointMake(centerX - spaceL, centerY - spaceT)];
+    [bezierpath addLineToPoint:CGPointMake(centerX + spaceR, centerY - spaceT)];
+    [bezierpath addLineToPoint:CGPointMake(centerX + spaceR, centerY - 0.00001)];
     
     bezierpath.lineWidth = 0;
     [bezierpath closePath];
@@ -86,7 +100,24 @@
     
     [containerView.layer addSublayer:gradientLayer];
     
-    _danmuView.maskView = containerView;
+    _showMainV.maskView = containerView;
+}
+
+- (void)p_goAIFaceTimer {
+    if (_aiFaceTimer == nil) {
+        __weak typeof(self) weakSelf = self;
+        _aiFaceTimer = [NSTimer qheoc_scheduledTimerWithTimeInterval:1 block:^{
+            [weakSelf p_changeFaceIn];
+        } repeats:YES];
+    }
+}
+
+- (void)p_changeFaceIn {
+    _faceIn++;
+    if (_faceIn > 2) {
+        _faceIn = -1;
+    }
+    [self p_addAIMask];
 }
 
 #pragma mark - QHDanmuViewDataSource
