@@ -51,6 +51,11 @@
 
 #pragma mark - Private
 
+/*
+ * [CAGradientLayer的一些属性解析 - YouXianMing - 博客园](http://www.cnblogs.com/YouXianMing/p/3793913.html)
+ * [利用CAShapeLayer和UIBezierPath实现中空透明圆，圆外填充色 - Carl-w - CSDN博客](https://blog.csdn.net/w_x_p/article/details/50553342)
+ * [使用maskView设计动画及遮盖 | Cowboy Tech](http://jackliu17.github.io/2016/05/03/%E4%BD%BF%E7%94%A8maskView%E8%AE%BE%E8%AE%A1%E5%8A%A8%E7%94%BB%E5%8F%8A%E9%81%AE%E7%9B%96/)
+ */
 - (void)p_addAIMask {
     UIView *containerView = [[UIView alloc] initWithFrame:_showMainV.bounds];
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
