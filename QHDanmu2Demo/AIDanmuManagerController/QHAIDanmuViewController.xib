@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QHAIDanmuViewController">
             <connections>
                 <outlet property="showMainV" destination="rf6-O6-4Hy" id="S7y-Yf-foe"/>
-                <outlet property="testV" destination="uPx-NO-p16" id="h1m-TO-FO7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -56,32 +55,13 @@
                         <action selector="sendAction:" destination="-1" eventType="touchUpInside" id="Cda-dd-KjV"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPx-NO-p16">
-                    <rect key="frame" x="0.0" y="412" width="375" height="235"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg1" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-7y-1eh">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="e8d-7y-1eh" firstAttribute="leading" secondItem="uPx-NO-p16" secondAttribute="leading" id="ElW-pK-Qse"/>
-                        <constraint firstAttribute="bottom" secondItem="e8d-7y-1eh" secondAttribute="bottom" id="IxZ-Lo-pWv"/>
-                        <constraint firstAttribute="trailing" secondItem="e8d-7y-1eh" secondAttribute="trailing" id="QaW-AP-H2E"/>
-                        <constraint firstItem="e8d-7y-1eh" firstAttribute="top" secondItem="uPx-NO-p16" secondAttribute="top" id="ekC-NF-psy"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="uPx-NO-p16" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="3Og-sC-Jcl"/>
-                <constraint firstItem="uPx-NO-p16" firstAttribute="top" secondItem="zwc-gH-FIq" secondAttribute="bottom" constant="10" id="83k-MW-vpe"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="uPx-NO-p16" secondAttribute="trailing" id="BNC-Ea-jgs"/>
                 <constraint firstItem="3gA-hz-wmh" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Dsp-T4-3bM"/>
                 <constraint firstItem="3gA-hz-wmh" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="Ea7-Su-ucr"/>
                 <constraint firstItem="zwc-gH-FIq" firstAttribute="top" secondItem="3gA-hz-wmh" secondAttribute="bottom" constant="18" id="cG6-9Z-I2q"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3gA-hz-wmh" secondAttribute="trailing" id="gXm-Rj-4od"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="uPx-NO-p16" secondAttribute="bottom" constant="20" id="hGu-nj-isN"/>
                 <constraint firstItem="zwc-gH-FIq" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="lHm-Cv-Bpx"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
