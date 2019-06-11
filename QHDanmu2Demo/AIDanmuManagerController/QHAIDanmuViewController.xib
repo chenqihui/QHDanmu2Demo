@@ -55,14 +55,30 @@
                         <action selector="sendAction:" destination="-1" eventType="touchUpInside" id="Cda-dd-KjV"/>
                     </connections>
                 </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JNP-5T-URp">
+                    <rect key="frame" x="26" y="429" width="323" height="29"/>
+                    <segments>
+                        <segment title="G"/>
+                        <segment title="Shape"/>
+                        <segment title="View"/>
+                        <segment title="GR"/>
+                        <segment title="AImg"/>
+                        <segment title="CImg"/>
+                    </segments>
+                    <connections>
+                        <action selector="selectModeAction:" destination="-1" eventType="valueChanged" id="onp-tq-Bcb"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="3gA-hz-wmh" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Dsp-T4-3bM"/>
                 <constraint firstItem="3gA-hz-wmh" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="Ea7-Su-ucr"/>
+                <constraint firstItem="JNP-5T-URp" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="NnB-0d-lwk"/>
                 <constraint firstItem="zwc-gH-FIq" firstAttribute="top" secondItem="3gA-hz-wmh" secondAttribute="bottom" constant="18" id="cG6-9Z-I2q"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3gA-hz-wmh" secondAttribute="trailing" id="gXm-Rj-4od"/>
                 <constraint firstItem="zwc-gH-FIq" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="lHm-Cv-Bpx"/>
+                <constraint firstItem="JNP-5T-URp" firstAttribute="top" secondItem="zwc-gH-FIq" secondAttribute="bottom" constant="27" id="tfj-Yv-Zlo"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

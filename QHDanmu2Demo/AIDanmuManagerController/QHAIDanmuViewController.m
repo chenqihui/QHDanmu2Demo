@@ -39,7 +39,7 @@
     [danmuView registerClass:[QHDanmuViewCell class] forCellReuseIdentifier:@"1"];
     _danmuView = danmuView;
     
-    [self p_addAlphaUIImage];
+    [self p_addCAGradientLayer];
 }
 
 #pragma mark - Private
@@ -56,7 +56,7 @@
     colorLayer.locations  = @[@(0.25), @(0.4), @(0.6), @(0.75)];
     colorLayer.startPoint = CGPointMake(0, 0);
     colorLayer.endPoint   = CGPointMake(1, 0);
-//    _showMainV.layer.mask = colorLayer;
+    _showMainV.layer.mask = colorLayer;
 }
 
 // [利用CAShapeLayer和UIBezierPath实现中空透明圆，圆外填充色 - Carl-w - CSDN博客](https://blog.csdn.net/w_x_p/article/details/50553342)
@@ -260,5 +260,33 @@
                              @{@"n": @"小白27", @"c": @"讲得挺好，一听就明白。"},
                              @{@"n": @"小白28", @"c": @"讲得挺好，一听就明白。"}]];
 }
+
+#pragma mark - Action
+
+- (IBAction)selectModeAction:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self p_addCAGradientLayer];
+            break;
+        case 1:
+            [self p_addCAShapeLayer];
+            break;
+        case 2:
+            [self p_addUIView];
+            break;
+        case 3:
+            [self p_addCGGradientRefImage];
+            break;
+        case 4:
+            [self p_addAlphaUIImage];
+            break;
+        case 5:
+            [self p_addCustomUIImage];
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end
