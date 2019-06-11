@@ -10,6 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface QHMaskView : UIView
+
+@end
+
 @interface QHAIDanmuViewController : UIViewController
 
 @end
