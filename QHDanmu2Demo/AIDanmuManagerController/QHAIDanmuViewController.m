@@ -196,7 +196,60 @@
 
 // [一行代码实现 UIView 镂空效果 | Lyman's Blog](http://www.lymanli.com/2018/11/10/subtract-mask/)
 - (void)p_addCustomUIImage {
+    UIView *v = [[UIView alloc] initWithFrame:_showMainV.bounds];
+    v.backgroundColor = [UIColor whiteColor];
     
+    UIGraphicsBeginImageContextWithOptions(v.bounds.size, NO, [UIScreen mainScreen].scale);
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(),
+                          v.frame.origin.x,
+                          v.frame.origin.y);
+    [v.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGImageRef originalMaskImage = [image CGImage];
+    float width = CGImageGetWidth(originalMaskImage);
+    float height = CGImageGetHeight(originalMaskImage);
+    
+    int strideLength = ceil(width);
+    unsigned char * alphaData = calloc(strideLength * height, sizeof(unsigned char));
+    CGContextRef alphaOnlyContext = CGBitmapContextCreate(alphaData,
+                                                          width,
+                                                          height,
+                                                          8,
+                                                          strideLength,
+                                                          NULL,
+                                                          kCGImageAlphaOnly);
+    
+    CGContextDrawImage(alphaOnlyContext, CGRectMake(0, 0, width, height), originalMaskImage);
+    
+    CGPoint c = CGPointMake(width/2, height/2);
+    float r = 80;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            unsigned char val = alphaData[y*strideLength + x];
+            float weight = sqrt(pow(x - c.x, 2) + pow(y - c.y, 2));
+            if (weight < r) {
+                val = 0;
+            }
+            else if (weight <= r * 2) {
+                val = (int)(255.0/r*(weight-r));
+            }
+            else {
+                val = 255;
+            }
+            alphaData[y*strideLength + x] = val;
+        }
+    }
+    
+    CGImageRef alphaMaskImage = CGBitmapContextCreateImage(alphaOnlyContext);
+    UIImage *resultImage = [UIImage imageWithCGImage:alphaMaskImage];
+    
+    UIImageView *i = [[UIImageView alloc] initWithFrame:_showMainV.bounds];
+    i.backgroundColor = [UIColor clearColor];
+    i.image = resultImage;
+    i.contentMode = UIViewContentModeScaleAspectFill;
+    _showMainV.maskView = i;
 }
 
 // [Quartz 2D编程指南之十一：位图与图像遮罩 | 南峰子的技术博客](http://southpeak.github.io/2015/01/05/quartz2d-11/)
